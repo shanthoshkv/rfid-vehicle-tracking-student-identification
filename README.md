@@ -2,6 +2,8 @@
 
 Campus gate entry/exit tracking system: an ESP32 with an RFID reader logs a scanned card to a PHP/MySQL backend, which identifies the student and their registered vehicle and shows a live dashboard at the security post.
 
+Write-ups: [`docs/Draft Paper.pdf`](docs/Draft%20Paper.pdf), [`docs/EL 5Th SEm.pdf`](docs/EL%205Th%20SEm.pdf), [`docs/Evara Phase 1.pdf`](docs/Evara%20Phase%201.pdf). `Resources/` has the literature-review papers on RFID and IoT in supply chain / access control that the design draws on.
+
 ## How it works
 
 ```
@@ -45,6 +47,7 @@ RFID card tap → ESP32 (MFRC522 reader) → WiFi → HTTP POST to verify.php
 - WiFi SSID/password are hardcoded in the `.ino` files, replace before flashing to your own network.
 - `verify.php` escapes the UID before querying but doesn't use parameterized queries elsewhere in `rfid_system/`, worth hardening if this ever goes past a bench demo.
 - No automated tests; this is bench-tested hardware + a working local web app, not a hardened production access-control system.
+- **`rfid_system/uploads/photos/` has real cardholder photos checked into git, filed under actual student USNs** (e.g. `1RV23AS004.jpeg`). That's personally identifiable data sitting in what looks like a public repo. Worth removing from version control (and scrubbing git history, a simple `git rm` doesn't purge it from old commits) before sharing this repo further, this README does not embed or reproduce any of those photos.
 
 ## Note on the portfolio site
 
