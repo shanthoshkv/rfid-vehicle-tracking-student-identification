@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: Key files present
+        run: |
+          test -s README.md
+          test -s docs/demo.gif
+          test -s rfid_system/verify.php
+          test -s rfid_system/config.php
+          test -s final_code/final_code.ino
+      - name: PHP syntax check
+        run: find . -name '*.php' -print0 | xargs -0 -n1 php -l

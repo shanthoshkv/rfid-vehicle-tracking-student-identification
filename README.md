@@ -1,5 +1,13 @@
 # RFID Vehicle Tracking & Student Identification
 
+ESP32 + RFID reader logs campus gate entries and exits to a PHP/MySQL backend and shows a live security dashboard.
+
+![demo](docs/demo.gif)
+
+```bash
+git clone https://github.com/shanthoshkv/rfid-vehicle-tracking-student-identification
+```
+
 Campus gate entry/exit tracking system: an ESP32 with an RFID reader logs a scanned card to a PHP/MySQL backend, which identifies the student and their registered vehicle and shows a live dashboard at the security post.
 
 Write-ups: [`docs/Draft Paper.pdf`](docs/Draft%20Paper.pdf), [`docs/EL 5Th SEm.pdf`](docs/EL%205Th%20SEm.pdf), [`docs/Evara Phase 1.pdf`](docs/Evara%20Phase%201.pdf). `Resources/` has the literature-review papers on RFID and IoT in supply chain / access control that the design draws on.
