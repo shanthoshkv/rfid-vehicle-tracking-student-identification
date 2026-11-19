@@ -21,7 +21,7 @@ RFID card tap → ESP32 (MFRC522 reader) → WiFi → HTTP POST to verify.php
                                                         │
                                     toggle entry/exit based on last logged access
                                                         │
-                                          response: GRANTED|name|type|vehicle|number
+                                          response: GRANTED|name|access_type|vehicle_type|vehicle_number|photo
                                                         │
                                         ESP32 displays result (LCD/OLED variant)
                                         Security dashboard shows live access log
@@ -34,7 +34,7 @@ RFID card tap → ESP32 (MFRC522 reader) → WiFi → HTTP POST to verify.php
   - `read_and_website_no_oled_led/` — reads the card and hits the server without display/LED feedback
   - `get_rfid/get_rfid.ino` — minimal sketch that just prints a scanned card's UID, used to register new cards into the database
 - **Backend** (`rfid_system/`, PHP + MySQL, built for XAMPP):
-  - `verify.php` — looks up the UID, toggles entry/exit based on the vehicle's last logged access, inserts an `access_logs` row, returns a pipe-delimited response to the ESP32
+  - `verify.php` — looks up the UID, toggles entry/exit based on the vehicle's last logged access, inserts an `access_logs` row, returns a pipe-delimited response to the ESP32 (`GRANTED|name|access_type|vehicle_type|vehicle_number|photo`, or `DENIED|Unknown Card`)
   - `admin/` — login-gated panel to add/edit/delete registered users and vehicles, and view the access log (`add_user.php`, `edit_user.php`, `delete_user.php`, `view_users.php`, `view_logs.php`)
   - `security/index.php` — live dashboard for the security post: today's entry/exit counts, current occupancy (entries minus exits), and the most recent scan with the cardholder's photo
   - `security/get_live_data.php` — polling endpoint the dashboard calls for live updates
